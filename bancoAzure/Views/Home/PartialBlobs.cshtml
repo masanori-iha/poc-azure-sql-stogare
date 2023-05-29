@@ -1,0 +1,30 @@
+﻿@using bancoAzure.Models;
+@model IEnumerable<BlobDto> 
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var blob in Model)
+        {
+            <tr>
+                <td>
+                    @blob.Name
+                </td>
+                <td>
+                    <div style="display: flex;">
+                        <a class="obter-imagem btn btn-warning" data-custom-value-uri="@($"{blob.Uri}")">Abrir Imagem</a>
+                        <a class="excluir btn btn-danger" data-custom-value-name="@($"{blob.Name}")"><i class="fa fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="module" src="~/js/usuario/partialblobs.js"></script>

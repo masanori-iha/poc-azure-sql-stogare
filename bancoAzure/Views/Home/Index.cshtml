@@ -1,0 +1,64 @@
+﻿@model IEnumerable<bancoAzure.Models.Usuario>
+@using NToastNotify;
+@inject IToastNotification _toastNotification;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section id="container-lista">
+    <section>
+        <p>
+            <a class="get-adicionar btn btn-primary"><i class="fa fa-plus-circle"></i> Adicionar</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Idade)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Idade)
+                        </td>
+                        <td>
+                            <a class="listar btn btn-warning" title="Editar"><i class="fa fa-pencil"></i></a>
+                            <a class="excluir btn btn-danger" title="Excluir"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                    @Html.Hidden("id-usuario", item.Id)
+                }
+            </tbody>
+        </table>
+
+        <div class="mt-2">
+            <a class="listar-imagens btn btn-primary" >Listar Imagens</a>
+        </div>
+    </section>
+
+    <form method="post" enctype="multipart/form-data">
+        <section class="mt-2">
+            <label>Upload</label>
+            <input type="file" multiple name="file-upload" />
+        </section>
+    </form>
+
+</section>
+<section id="container-list-blobs"></section>
+<section id="container-adicionar"></section>
+<section id="container-imagem"></section>
+
+<script type="module" src="~/js/usuario/index.js"></script>
